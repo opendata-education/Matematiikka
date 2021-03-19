@@ -3,4 +3,5 @@
 - file: intro
 - part: Harjoitukset
   chapters:
+  - file: harjoitukset/symbolinen_laskenta
   - file: harjoitukset/funktioiden_tutkiminen
