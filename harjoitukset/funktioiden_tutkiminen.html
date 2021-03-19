@@ -56,7 +56,7 @@
     <link rel="shortcut icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Tervetuloa avoimen datan pariin" href="../intro.html" />
+    <link rel="prev" title="Symbolinen laskenta Pythonilla" href="symbolinen_laskenta.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -108,9 +108,19 @@
  </span>
 </p>
 <ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="symbolinen_laskenta.html">
+   Symbolinen laskenta Pythonilla
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Funktioiden tutkiminen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="#funktion-nollakohdat">
+   Funktion nollakohdat
   </a>
  </li>
 </ul>
@@ -217,14 +227,26 @@
         </div>
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#toisen-asteen-yhtalo">
-   Toisen asteen yhtälö
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Funktioiden tutkiminen
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#toisen-asteen-yhtalo">
+     Toisen asteen yhtälö
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derivaatta-ja-tangentin-kulmakerroin">
+     Derivaatta ja tangentin kulmakerroin
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#derivaatta-ja-tangentin-kulmakerroin">
-   Derivaatta ja tangentin kulmakerroin
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#funktion-nollakohdat">
+   Funktion nollakohdat
   </a>
  </li>
 </ul>
@@ -368,6 +390,66 @@
 </div>
 </div>
 </div>
+<div class="section" id="funktion-nollakohdat">
+<h1>Funktion nollakohdat<a class="headerlink" href="#funktion-nollakohdat" title="Permalink to this headline">¶</a></h1>
+<p>Selvitetään funktion nollakohdat ja piirretään ne kuvaajaan. Pythonissa on symboliseen laskentaan tarkoitettu paketti “SymPy”, jota voidaan hyödyntää tässä tehtävässä.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Symbol</span>
+<span class="kn">from</span> <span class="nn">sympy.solvers</span> <span class="kn">import</span> <span class="n">solve</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Määritetään ratkaistava funktio</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span>
+
+<span class="c1"># Symbolista laskentaa varten otetaan symboli x käyttöön</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">Symbol</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+
+<span class="c1"># Ratkaistaan funktion juuret solve-työkalulla</span>
+<span class="n">roots</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Tulostetaan ratkaistut juuret</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">roots</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0, 1 - sqrt(2), 1 + sqrt(2)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Piirretään funktiosta kuvaaja ja merkitään juuret kuvaan</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># Piirrettävä väli ja pisteiden lukumäärä</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> <span class="c1"># Alustetaan kuvaaja</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rng</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">rng</span><span class="p">))</span> <span class="c1"># Piirretään funktio välillä &quot;rng&quot;</span>
+
+<span class="c1"># Piirretään jokainen juuri &quot;roots&quot;-listasta</span>
+<span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">:</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">root</span><span class="p">),</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Akseleiden muotoilut</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span> <span class="c1"># Haetaan muuttuja, jonka avulla akseleita muokataan</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span> <span class="c1"># y=0 -suoran korostus</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span> <span class="c1"># x=0 -suoran korostus</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span> <span class="c1"># Näytetään ruudukko</span>
+
+<span class="c1"># Kuvaajan näyttäminen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/funktioiden_tutkiminen_9_0.png" src="../_images/funktioiden_tutkiminen_9_0.png" />
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -394,7 +476,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">Tervetuloa avoimen datan pariin</a>
+    <a class='left-prev' id="prev-link" href="symbolinen_laskenta.html" title="previous page">Symbolinen laskenta Pythonilla</a>
 
         </div>
         
