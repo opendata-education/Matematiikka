@@ -4,10 +4,3 @@ numpy
 ghp-import
 ipywidgets
 sympy
-pythonTVReconstruction
-scipy
-sklearn.preprocessing
-skimage.transform
-matplotlib.pyplot
-matplotlib.gridspec
-time
