@@ -1,7 +1,9 @@
 # Table of contents
 # Learn more at https://jupyterbook.org/customize/toc.html
-- file: intro
-- part: Harjoitukset
-  chapters:
+format: jb-book
+root: intro
+chapters:
+- file: harjoitukset/otsikko
+  sections:
   - file: harjoitukset/symbolinen_laskenta
   - file: harjoitukset/funktioiden_tutkiminen
